@@ -1,13 +1,152 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: Centra;
+  src: url('./assets/font/CentraNo2-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: Centra;
+  src: url('./assets/font/CentraNo2-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: Centra;
+  src: url('./assets/font/CentraNo2-Book.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+  }
+
+  body {
+    @apply bg-dark-bg text-white font-centra overflow-x-hidden;
+  }
+
+  * {
+    @apply box-border m-0 p-0;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply leading-tight;
+  }
+
+  a {
+    @apply no-underline;
+  }
+
+  img {
+    @apply max-w-full h-auto;
+  }
+}
+
+@layer components {
+  .gradient-text {
+    @apply bg-brand-gradient bg-clip-text text-transparent;
+  }
+
+  .txt-rotate > .wrap {
+    border-right: 0.08em solid #666;
+  }
+
+  .tagline-badge {
+    @apply inline-block px-3 py-2 text-lg font-bold tracking-wider mb-4
+           border border-white/50 rounded-sm;
+    background: linear-gradient(90.21deg, rgba(170,54,124,0.5) -5.91%, rgba(74,47,189,0.5) 111.58%);
+  }
+
+  .btn-primary {
+    @apply relative inline-flex items-center gap-2 px-8 py-4 font-bold text-white
+           border border-white transition-colors duration-300 overflow-hidden;
+  }
+  .btn-primary::before {
+    content: '';
+    @apply absolute inset-0 w-0 bg-white transition-all duration-300 -z-[1];
+  }
+  .btn-primary:hover {
+    @apply text-dark-bg;
+  }
+  .btn-primary:hover::before {
+    @apply w-full;
+  }
+
+  .btn-gradient {
+    @apply relative inline-flex items-center gap-2 px-8 py-4 font-bold text-white
+           transition-all duration-300;
+    background: linear-gradient(90.21deg, #AA367C -5.91%, #4A2FBD 111.58%);
+  }
+  .btn-gradient:hover {
+    @apply opacity-90;
+  }
+
+  .social-circle {
+    @apply relative inline-flex items-center justify-center w-10 h-10 rounded-full
+           border border-white/50 bg-white/10 transition-all duration-300 overflow-hidden;
+  }
+  .social-circle::before {
+    content: '';
+    @apply absolute inset-0 rounded-full bg-white scale-0 transition-transform duration-300;
+  }
+  .social-circle:hover::before {
+    @apply scale-100;
+  }
+  .social-circle svg {
+    @apply relative z-10 transition-all duration-300;
+  }
+  .social-circle:hover svg {
+    @apply text-dark-bg;
+  }
+
+  .skill-badge {
+    @apply px-3 py-1 text-sm font-medium rounded-full border border-white/20 bg-white/5
+           text-text-muted transition-all duration-200 cursor-default;
+  }
+  .skill-badge:hover {
+    @apply border-brand-pink/60 text-white bg-brand-pink/10;
+  }
+
+  .tech-tag {
+    @apply px-2 py-0.5 text-xs font-medium rounded border border-white/20 bg-white/5 text-text-muted;
+  }
+
+  .proj-imgbx {
+    @apply relative rounded-2xl overflow-hidden;
+  }
+  .proj-imgbx::before {
+    content: '';
+    @apply absolute inset-0 opacity-0 transition-opacity duration-300 z-10;
+    background: linear-gradient(90.21deg, #AA367C -5.91%, #4A2FBD 111.58%);
+  }
+  .proj-imgbx:hover::before {
+    @apply opacity-90;
+  }
+  .proj-overlay {
+    @apply absolute inset-0 flex flex-col items-center justify-center z-20
+           opacity-0 translate-y-4 transition-all duration-300 text-center px-4;
+  }
+  .proj-imgbx:hover .proj-overlay {
+    @apply opacity-100 translate-y-0;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #121212;
+}
+::-webkit-scrollbar-thumb {
+  background: #AA367C;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #4A2FBD;
 }
